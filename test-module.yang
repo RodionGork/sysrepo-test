@@ -1,0 +1,21 @@
+module test-module {
+  namespace "urn:example:test-module";
+  prefix tm;
+
+  container elements {
+    list elem {
+      key "id";
+      leaf id {
+        type int32;
+      }
+      leaf name {
+        type string;
+      }
+      leaf online {
+        config false;
+        type string;
+        //default "no";
+      }
+    }
+  }
+}

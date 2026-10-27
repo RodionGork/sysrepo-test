@@ -1,0 +1,10 @@
+<elements xmlns="urn:example:test-module">
+  <elem>
+    <id>13</id>
+    <name>server</name>
+  </elem>
+  <elem>
+    <id>15</id>
+    <name>router</name>
+  </elem>
+</elements>
