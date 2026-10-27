@@ -10,4 +10,6 @@ gcc test.c -lsysrepo
 
 ./a.out & sleep 1 && sysrepocfg -X -m test-module -d operational
 
+sleep 2
+
 sysrepoctl -u test-module
