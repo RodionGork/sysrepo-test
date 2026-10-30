@@ -1,15 +1,33 @@
 #!/bin/bash
 
+if [ $# -lt 4 ]; then
+  ./a.out
+  exit
+fi
+
 set -e
 
 sysrepoctl -i test-module.yang
-sysrepocfg -I test-module-sample.xml
-sysrepocfg -X -m test-module
+#sysrepocfg -I test-module-sample.xml
+
+sleep 1
 
 gcc test.c -lsysrepo
 
-./a.out & sleep 1 && sysrepocfg -X -m test-module -d operational
+time ./a.out $1 $2 $3 $4 &
 
-sleep 2
+until [ -f proceed.flag ]; do
+  sleep 1
+done
+
+time sysrepocfg -Xtest.res -m test-module -d operational
+
+until [ -f complete.flag ]; do
+  sleep 1
+done
+
+echo going to unregister test-module
 
 sysrepoctl -u test-module
+
+rm -f *.flag

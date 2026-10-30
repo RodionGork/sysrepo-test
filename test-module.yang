@@ -11,10 +11,16 @@ module test-module {
       leaf name {
         type string;
       }
+      leaf comment {
+        type string;
+      }
       leaf online {
         config false;
         type string;
-        default "no";
+      }
+      leaf active {
+        config false;
+        type string;
       }
     }
   }
