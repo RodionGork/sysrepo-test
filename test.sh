@@ -14,7 +14,7 @@ sleep 1
 
 gcc test.c -lsysrepo
 
-time ./a.out $1 $2 $3 $4 &
+time ./a.out $@ &
 
 until [ -f proceed.flag ]; do
   sleep 1
@@ -31,3 +31,6 @@ echo going to unregister test-module
 sysrepoctl -u test-module
 
 rm -f *.flag
+
+echo "lines in exported file:"
+wc -l test.res
